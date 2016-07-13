@@ -1,15 +1,18 @@
-package nupark;
+package com.garagem.nupark;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
+
+import system.Config;
 
 
 public class ActivitySignup extends AppCompatActivity {
@@ -47,7 +50,7 @@ public class ActivitySignup extends AppCompatActivity {
             public void onClick(View v) {
 
                 Ion.with(getApplicationContext())
-                        .load("http://192.168.1.37:8080/nupark_api/signup")
+                        .load(Config.HTTP_HOST + "/signup")
                         .setBodyParameter("usuario", usuario.getText().toString())
                         .setBodyParameter("senha", senha.getText().toString())
                         .setBodyParameter("email", email.getText().toString())
@@ -56,11 +59,11 @@ public class ActivitySignup extends AppCompatActivity {
                         .setCallback(new FutureCallback<String>() {
                             @Override
                             public void onCompleted(Exception e, String result) {
-
+                                Log.d("retorno", result);
                                 if(false){
-                                    Intent it = new Intent(ActivitySignup.this,home.class);
-                                    it.putExtra("nome","value");
-                                    startActivity(it);
+//                                    Intent it = new Intent(ActivitySignup.this,home.class);
+//                                    it.putExtra("nome","value");
+//                                    startActivity(it);
                                 }else{
                                     Context context = getApplicationContext();
                                     CharSequence text = "Cadastrado!";

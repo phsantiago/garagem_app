@@ -1,4 +1,4 @@
-package nupark;
+package com.garagem.nupark;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import nupark.R;
 
 public class MainActivity extends AppCompatActivity {
 TextView signin;
@@ -34,7 +32,7 @@ TextView signin;
             @Override
             public void onClick(View v) {
 
-                Intent it = new Intent(MainActivity.this,ActivitySignin.class);
+                Intent it = new Intent(MainActivity.this,ActivityMap.class);
                 startActivity(it);
             }
         });

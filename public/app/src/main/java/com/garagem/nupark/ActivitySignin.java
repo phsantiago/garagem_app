@@ -1,20 +1,15 @@
-package nupark;
+package com.garagem.nupark;
 
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.gson.Gson;
@@ -24,7 +19,6 @@ import com.koushikdutta.ion.Ion;
 
 import customfonts.MyEditText;
 import customfonts.MyTextView;
-import nupark.R;
 
 import static com.google.android.gms.common.api.GoogleApiClient.*;
 
@@ -83,9 +77,9 @@ public class ActivitySignin extends AppCompatActivity {
                                 System.out.println(result);
 
                                 if (resobj.get("valid").getAsDouble() == 1) {
-                                    Intent it = new Intent(ActivitySignin.this, home.class);
-                                    it.putExtra("nome", resobj.get("nome").toString());
-                                    startActivity(it);
+//                                    Intent it = new Intent(ActivitySignin.this, home.class);
+//                                    it.putExtra("nome", resobj.get("nome").toString());
+//                                    startActivity(it);
                                 }else{
                                     Context context = getApplicationContext();
                                     CharSequence text = "Usuário não encontrado!";
@@ -122,7 +116,7 @@ public class ActivitySignin extends AppCompatActivity {
 //                // Otherwise, set the URL to null.
 //                Uri.parse("http://host/path"),
 //                // TODO: Make sure this auto-generated app URL is correct.
-//                Uri.parse("android-app://nupark.nupark/http/host/path")
+//                Uri.parse("android-app://com.garagem.nupark.com.garagem.nupark/http/host/path")
 //        );
 //        AppIndex.AppIndexApi.start(client, viewAction);
 //    }
@@ -141,7 +135,7 @@ public class ActivitySignin extends AppCompatActivity {
 //                // Otherwise, set the URL to null.
 //                Uri.parse("http://host/path"),
 //                // TODO: Make sure this auto-generated app URL is correct.
-//                Uri.parse("android-app://nupark.nupark/http/host/path")
+//                Uri.parse("android-app://com.garagem.nupark.com.garagem.nupark/http/host/path")
 //        );
 //        AppIndex.AppIndexApi.end(client, viewAction);
 //        client.disconnect();
