@@ -61,9 +61,9 @@ public class ActivityMap extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener{
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ID_FILIAL = "id_filial";
-    private static final String LATITUDE = "latitude";
-    private static final String LONGITUDE = "longitude";
+    private static final int ID_FILIAL = 1;
+    private static final String LATITUDE = "-23.7377419";
+    private static final String LONGITUDE = "-46.6927231";
     private static final String LOGO = "logo";
     private static final String UNIDADE = "unidade";
     private static final String NOME_FANTASIA = "nome_fantasia";
@@ -103,18 +103,21 @@ public class ActivityMap extends AppCompatActivity implements
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(ActivityMap.this);
 
-        if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
-            id_filial = extras.getInt(ID_FILIAL);
-            latitude = extras.getFloat(LATITUDE);
-            longitude = extras.getFloat(LONGITUDE);
-            logoPath = extras.getString(LOGO);
-            unidade  = extras.getString(UNIDADE);
-            nome_fantasia  = extras.getString(NOME_FANTASIA);
-            telefone  = extras.getString(TELEFONE);
-            endereco  = extras.getString(ENDERECO);
-            cep  = extras.getString(CEP);
-        }
+        this.latitude = (float) -23.7365769;
+        this.longitude = (float) -46.6942962;
+
+//        if (savedInstanceState == null) {
+//            Bundle extras = getIntent().getExtras();
+//            id_filial = extras.getInt(ID_FILIAL);
+//            latitude = extras.getFloat(LATITUDE);
+//            longitude = extras.getFloat(LONGITUDE);
+//            logoPath = extras.getString(LOGO);
+//            unidade  = extras.getString(UNIDADE);
+//            nome_fantasia  = extras.getString(NOME_FANTASIA);
+//            telefone  = extras.getString(TELEFONE);
+//            endereco  = extras.getString(ENDERECO);
+//            cep  = extras.getString(CEP);
+//        }
 
 
         setTitle("Voltar");
@@ -285,7 +288,7 @@ public class ActivityMap extends AppCompatActivity implements
         Double userLong = mCurrentLocation.getLongitude();
 
         LatLng origin = new LatLng(userLat, userLong);
-        LatLng dest = new LatLng(latitude, longitude);
+        LatLng dest = new LatLng(-23.7365769,-46.6942962);
 
         // Getting URL to the Google Directions API
         String url = getDirectionsUrl(origin, dest);
@@ -358,7 +361,9 @@ public class ActivityMap extends AppCompatActivity implements
     }
 
     protected synchronized void buildGoogleApiClient() {
-
+        if (!isGooglePlayServicesAvailable()) {
+            Log.i("buildGoogleApiClient", "GooglePlayServices is not available");
+        }
         createLocationRequest();
         mGoogleApiClient = new GoogleApiClient.Builder(ActivityMap.this)
                 .addApi(LocationServices.API)
@@ -605,7 +610,7 @@ public class ActivityMap extends AppCompatActivity implements
 
             // Traversing through all the routes
             for(int i=0;i<result.size();i++){
-                points = new ArrayList<LatLng>();
+                points = new ArrayList<>();
                 lineOptions = new PolylineOptions();
 
                 // Fetching i-th route
