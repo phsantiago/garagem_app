@@ -32,7 +32,7 @@ TextView signin;
             @Override
             public void onClick(View v) {
 
-                Intent it = new Intent(MainActivity.this,ActivityMap.class);
+                Intent it = new Intent(MainActivity.this, ActivityMap.class);
                 startActivity(it);
             }
         });

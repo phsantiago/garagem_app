@@ -29,6 +29,7 @@
         </activity>
         <activity android:name=".ActivitySignin" />
         <activity android:name=".ActivitySignup" />
+        <activity android:name=".ActivityMap" />
         <!--
      ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -48,9 +49,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity
-            android:name=".ActivityMap"
-            android:label="@string/title_activity_activity_map"></activity>
+
     </application>
 
 </manifest>
