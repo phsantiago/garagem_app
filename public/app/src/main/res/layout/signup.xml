@@ -43,14 +43,6 @@
 
         </LinearLayout>
 
-        <ImageView
-            android:layout_width="90dp"
-            android:layout_height="120dp"
-            android:background="@drawable/logo"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="110dp"
-            />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -104,33 +96,6 @@
                 android:background="#ADCCE2" />
 
 
-
-
-
-            <customfonts.MyEditText
-                android:textSize="16dp"
-                android:id="@+id/usuario"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Usuário"
-
-                android:textColorHint="#ADCCE2"
-                android:textColor="#ADCCE2"
-                android:layout_marginLeft="22dp"
-                android:inputType="text"
-                android:background="#0000"
-                android:padding="16dp"
-
-                android:layout_marginRight="35dp"/>
-
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_height="1dp"
-                android:background="#ADCCE2" />
-
             <customfonts.MyEditText
                 android:textSize="16dp"
                 android:id="@+id/senha"
@@ -146,6 +111,29 @@
                 android:padding="16dp"
                 android:layout_marginRight="35dp"/>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:background="#ADCCE2"/>
+
+            <customfonts.MyEditText
+                android:textSize="16dp"
+                android:id="@+id/senha2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Confirme a senha"
+                android:textColorHint="#ADCCE2"
+                android:layout_marginLeft="22dp"
+                android:inputType="textPassword"
+                android:maxLength="32"
+                android:textColor="#ADCCE2"
+                android:background="#0000"
+                android:padding="16dp"
+
+                android:layout_marginRight="35dp"/>
             <View
                 android:layout_width="match_parent"
                 android:layout_marginLeft="40dp"

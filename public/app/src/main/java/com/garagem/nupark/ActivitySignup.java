@@ -1,6 +1,5 @@
 package com.garagem.nupark;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,18 +8,24 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.garagem.nupark.dto.RetornoDto;
+import com.garagem.nupark.dto.UsuarioDto;
+import com.garagem.nupark.service.UsuarioService;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
-import com.koushikdutta.ion.Ion;
-
-import system.Config;
 
 
 public class ActivitySignup extends AppCompatActivity {
 
+    UsuarioService usuarioService = new UsuarioService();
+    Gson gson = new Gson();
+
+
   ImageView signupback;
   customfonts.MyTextView signin;
-  customfonts.MyEditText usuario;
   customfonts.MyEditText senha;
+  customfonts.MyEditText senha2;
   customfonts.MyEditText email;
   customfonts.MyEditText nome;
     @Override
@@ -30,8 +35,8 @@ public class ActivitySignup extends AppCompatActivity {
 
         signupback = (ImageView)findViewById(R.id.signupback);
         signin = (customfonts.MyTextView)findViewById(R.id.signin);
-        usuario = (customfonts.MyEditText)findViewById(R.id.usuario);
         senha = (customfonts.MyEditText)findViewById(R.id.senha);
+        senha2 = (customfonts.MyEditText)findViewById(R.id.senha2);
         email = (customfonts.MyEditText)findViewById(R.id.email);
         nome = (customfonts.MyEditText)findViewById(R.id.nome);
 
@@ -45,38 +50,32 @@ public class ActivitySignup extends AppCompatActivity {
         });
 
         signin.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
+                UsuarioDto usuarioDto = new UsuarioDto();
+                usuarioDto.setNome(nome.getText().toString());
+                usuarioDto.setEmail(email.getText().toString());
+                usuarioDto.setSenha(senha.getText().toString());
 
-                Ion.with(getApplicationContext())
-                        .load(Config.HTTP_HOST + "/signup")
-                        .setBodyParameter("usuario", usuario.getText().toString())
-                        .setBodyParameter("senha", senha.getText().toString())
-                        .setBodyParameter("email", email.getText().toString())
-                        .setBodyParameter("nome", senha.getText().toString())
-                        .asString()
-                        .setCallback(new FutureCallback<String>() {
-                            @Override
-                            public void onCompleted(Exception e, String result) {
-                                Log.d("retorno", result);
-                                if(false){
-//                                    Intent it = new Intent(ActivitySignup.this,home.class);
-//                                    it.putExtra("nome","value");
-//                                    startActivity(it);
-                                }else{
-                                    Context context = getApplicationContext();
-                                    CharSequence text = "Cadastrado!";
-                                    int duration = Toast.LENGTH_SHORT;
+                usuarioService.registraUsuario(usuarioDto, getApplicationContext(), new FutureCallback<JsonObject>() {
+                    @Override
+                    public void onCompleted(Exception e, JsonObject result) {
+                        Log.d("retorno", result.toString());
+                        if(e != null){
+                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }else{
+                            RetornoDto retornoDto = gson.fromJson(result, RetornoDto.class);
+                            Toast.makeText(getApplicationContext(), retornoDto.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
 
-                                    Toast toast = Toast.makeText(context, text, duration);
-                                    toast.show();
-                                }
-                            }
-                        });
+                    }
+                });
+
 
 
             }
+
+
         });
     }
 }
