@@ -1,6 +1,5 @@
 package com.garagem.nupark.dto;
 
-<<<<<<< HEAD
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -74,10 +73,4 @@ public class GaragemDto {
 	}
 	
 	
-=======
-/**
- * Created by Pedro on 14/07/2016.
- */
-public class GaragemDto {
->>>>>>> origin/master
 }
