@@ -84,7 +84,6 @@ public class ActivityMap extends AppCompatActivity implements
     private MapView mapView;
     private Boolean mapReady;
 
-
     /***********************************************************************************************
      * Fragment LifeCycle Methods
      **********************************************************************************************/
@@ -259,7 +258,7 @@ public class ActivityMap extends AppCompatActivity implements
 
     public void createMarker() {
 
-        mMarkers = new ArrayList<Marker>();
+
 
         LatLng marker = new LatLng(latitude, longitude);
 
@@ -455,7 +454,7 @@ public class ActivityMap extends AppCompatActivity implements
                 "Provider: " + mCurrentLocation.getProvider());
 
 
-        //Draw Circle ---------------------------------------------------------------------
+        /*Draw Circle ---------------------------------------------------------------------
         if(mapCircle!=null){
             mapCircle.remove();
         }
@@ -467,7 +466,7 @@ public class ActivityMap extends AppCompatActivity implements
                 .strokeColor(0xFF00FF00)
                 .fillColor(0x3300FF00));
 
-        //Move Camera ---------------------------------------------------------------------
+       /Move Camera ---------------------------------------------------------------------*/
         moveCamera(lat, lng);
 
         selectMarker();
