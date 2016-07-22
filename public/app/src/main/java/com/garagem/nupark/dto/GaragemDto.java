@@ -3,6 +3,7 @@ package com.garagem.nupark.dto;
 import java.math.BigDecimal;
 import java.util.Date;
 
+
 public class GaragemDto {
 	private int id_garagem;
 	private Date dt_registro;
@@ -13,7 +14,7 @@ public class GaragemDto {
 	private String titulo;
 	private String descricao;
 	private int id_usuario_dono;
-	
+
 	public GaragemDto(){
 	}
 
@@ -71,6 +72,6 @@ public class GaragemDto {
 	public void setId_usuario_dono(int id_usuario_dono) {
 		this.id_usuario_dono = id_usuario_dono;
 	}
-	
+
 
 }

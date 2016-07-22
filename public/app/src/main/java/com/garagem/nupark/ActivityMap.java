@@ -15,6 +15,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.garagem.nupark.dto.RetornoDto;
+import com.garagem.nupark.service.GaragemService;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -46,12 +48,17 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 import com.garagem.nupark.dto.GaragemDto;
 import com.garagem.nupark.gps.DirectionsJSONParser;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.koushikdutta.async.future.FutureCallback;
 
 
 public class ActivityMap extends AppCompatActivity implements
@@ -84,6 +91,8 @@ public class ActivityMap extends AppCompatActivity implements
     private MapView mapView;
     private Boolean mapReady;
 
+    private GaragemService garagemService = new GaragemService();
+    private Gson gson = new Gson();
     /***********************************************************************************************
      * Fragment LifeCycle Methods
      **********************************************************************************************/
@@ -118,8 +127,6 @@ public class ActivityMap extends AppCompatActivity implements
 //            cep  = extras.getString(CEP);
 //        }
 
-
-        setTitle("Voltar");
 
         /*
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -256,20 +263,38 @@ public class ActivityMap extends AppCompatActivity implements
 
     private List<Marker> mMarkers;
 
+    Boolean firstTime = false;
+
     public void createMarker() {
 
+        garagemService.consultaGaragem(new GaragemDto(),getApplicationContext(), new FutureCallback<JsonArray>() {
+
+            @Override
+            public void onCompleted(Exception e, JsonArray result) {
+                if (e == null) {
+
+                    GaragemDto[] arrayGaragem = gson.fromJson("", GaragemDto[].class);
+                    ArrayList<GaragemDto> listaGaragem = (ArrayList<GaragemDto>) Arrays.asList(arrayGaragem);
+
+                    for(GaragemDto garagemDto : listaGaragem){
+
+                        LatLng marker = new LatLng(garagemDto.getLatitude().doubleValue(), garagemDto.getLongitude().doubleValue());
+                        firstTime = true;
+                        MarkerOptions markerOptions = new MarkerOptions();
+                        markerOptions.position(marker);
+                        markerOptions.title(nome_fantasia);
+                        markerOptions.snippet(unidade);
+                        //        BitmapDescriptor markerIcon = BitmapDescriptorFactory.fromResource(R.drawable.marker);
+                        //        markerOptions.icon(markerIcon);
+                        Marker mMarker = GMap.addMarker(markerOptions);
+                        mMarkers.add(mMarker);
+
+                    }
+                }
+            }
+        });
 
 
-        LatLng marker = new LatLng(latitude, longitude);
-
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(marker);
-        markerOptions.title(nome_fantasia);
-        markerOptions.snippet(unidade);
-//        BitmapDescriptor markerIcon = BitmapDescriptorFactory.fromResource(R.drawable.marker);
-//        markerOptions.icon(markerIcon);
-        Marker mMarker = GMap.addMarker(markerOptions);
-        mMarkers.add(mMarker);
 
 
     }
@@ -433,7 +458,7 @@ public class ActivityMap extends AppCompatActivity implements
 
     Circle mapCircle;
 
-    Boolean firstTime = true;
+
 
     private void updateUI() {
 
