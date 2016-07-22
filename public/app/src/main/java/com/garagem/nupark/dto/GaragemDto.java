@@ -1,6 +1,5 @@
 package com.garagem.nupark.dto;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 
@@ -9,8 +8,8 @@ public class GaragemDto {
 	private Date dt_registro;
 	private Date dt_delete;
 	private boolean deleted;
-	private BigDecimal latitude;
-	private BigDecimal longitude;
+	private double latitude;
+	private double longitude;
 	private String titulo;
 	private String descricao;
 	private int id_usuario_dono;
@@ -42,16 +41,16 @@ public class GaragemDto {
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
 	}
-	public BigDecimal getLatitude() {
+	public double getLatitude() {
 		return latitude;
 	}
-	public void setLatitude(BigDecimal latitude) {
+	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
-	public BigDecimal getLongitude() {
+	public double getLongitude() {
 		return longitude;
 	}
-	public void setLongitude(BigDecimal longitude) {
+	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
 	public String getTitulo() {

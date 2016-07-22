@@ -273,12 +273,12 @@ public class ActivityMap extends AppCompatActivity implements
             public void onCompleted(Exception e, JsonArray result) {
                 if (e == null) {
 
-                    GaragemDto[] arrayGaragem = gson.fromJson("", GaragemDto[].class);
+                    GaragemDto arrayGaragem = gson.fromJson(result, GaragemDto.class);
                     ArrayList<GaragemDto> listaGaragem = (ArrayList<GaragemDto>) Arrays.asList(arrayGaragem);
 
                     for(GaragemDto garagemDto : listaGaragem){
 
-                        LatLng marker = new LatLng(garagemDto.getLatitude().doubleValue(), garagemDto.getLongitude().doubleValue());
+                        LatLng marker = new LatLng(garagemDto.getLatitude(), garagemDto.getLongitude());
                         firstTime = true;
                         MarkerOptions markerOptions = new MarkerOptions();
                         markerOptions.position(marker);
