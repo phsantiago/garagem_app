@@ -5,8 +5,8 @@ import java.util.Date;
 
 public class GaragemDto {
 	private int id_garagem;
-	private Date dt_registro;
-	private Date dt_delete;
+	private long dt_registro;
+	private long dt_delete;
 	private boolean deleted;
 	private double latitude;
 	private double longitude;
@@ -22,18 +22,6 @@ public class GaragemDto {
 	}
 	public void setId_garagem(int id_garagem) {
 		this.id_garagem = id_garagem;
-	}
-	public Date getDt_registro() {
-		return dt_registro;
-	}
-	public void setDt_registro(Date dt_registro) {
-		this.dt_registro = dt_registro;
-	}
-	public Date getDt_delete() {
-		return dt_delete;
-	}
-	public void setDt_delete(Date dt_delete) {
-		this.dt_delete = dt_delete;
 	}
 	public boolean isDeleted() {
 		return deleted;
@@ -72,5 +60,19 @@ public class GaragemDto {
 		this.id_usuario_dono = id_usuario_dono;
 	}
 
+	public long getDt_registro() {
+		return dt_registro;
+	}
 
+	public void setDt_registro(long dt_registro) {
+		this.dt_registro = dt_registro;
+	}
+
+	public long getDt_delete() {
+		return dt_delete;
+	}
+
+	public void setDt_delete(long dt_delete) {
+		this.dt_delete = dt_delete;
+	}
 }

@@ -44,6 +44,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.DateFormat;
@@ -58,6 +59,7 @@ import com.garagem.nupark.gps.DirectionsJSONParser;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 import com.koushikdutta.async.future.FutureCallback;
 
 
@@ -273,8 +275,8 @@ public class ActivityMap extends AppCompatActivity implements
             public void onCompleted(Exception e, JsonArray result) {
                 if (e == null) {
 
-                    GaragemDto arrayGaragem = gson.fromJson(result, GaragemDto.class);
-                    ArrayList<GaragemDto> listaGaragem = (ArrayList<GaragemDto>) Arrays.asList(arrayGaragem);
+                    Type listType = new TypeToken<List<GaragemDto>>(){}.getType();
+                    ArrayList<GaragemDto> listaGaragem = gson.fromJson(result.toString(), listType);
 
                     for(GaragemDto garagemDto : listaGaragem){
 
