@@ -116,7 +116,7 @@ public class testenav extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("NuPark");
+        getSupportActionBar().setTitle("OpenGar");
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -314,7 +314,7 @@ public class testenav extends AppCompatActivity
 
     }
 
-    private List<Marker> mMarkers;
+    private List<Marker> mMarkers = new ArrayList<Marker>();
 
     Boolean firstTime = false;
 
@@ -365,6 +365,7 @@ public class testenav extends AppCompatActivity
         Double userLong = mCurrentLocation.getLongitude();
 
         LatLng origin = new LatLng(userLat, userLong);
+        moveCamera(userLat, userLong);
         LatLng dest = new LatLng(-23.7365769,-46.6942962);
 
         // Getting URL to the Google Directions API
