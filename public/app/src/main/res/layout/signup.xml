@@ -17,7 +17,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="37dp"
-            android:layout_marginLeft="30dp">
+            android:layout_marginLeft="30dp"
+            android:id="@+id/linearLayout">
 
         <ImageView
 
@@ -47,7 +48,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_alignParentBottom="true">
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/linearLayout">
 
             <customfonts.MyEditText
                 android:textSize="16dp"
@@ -82,7 +84,7 @@
                 android:textColorHint="#ADCCE2"
                 android:textColor="#ADCCE2"
                 android:layout_marginLeft="22dp"
-                android:inputType="text"
+                android:inputType="textEmailAddress"
                 android:background="#0000"
                 android:padding="16dp"
                 android:layout_marginRight="35dp"/>

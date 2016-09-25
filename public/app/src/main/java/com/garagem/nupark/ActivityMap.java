@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.garagem.nupark.dto.RetornoDto;
 import com.garagem.nupark.service.GaragemService;
@@ -198,6 +199,14 @@ public class ActivityMap extends AppCompatActivity implements
         //moveCamera(-23.543628, -46.658199);
         //GMap.moveCamera(CameraUpdateFactory.zoomTo(15));
 
+        GMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                Log.d("Click marker",marker.toString());
+                Toast.makeText(getApplicationContext(), marker.toString(), Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
         createMarker();
     /*
         GMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
@@ -263,12 +272,11 @@ public class ActivityMap extends AppCompatActivity implements
 
     }
 
-    private List<Marker> mMarkers;
+    private List<Marker> mMarkers = new ArrayList<Marker>();
 
     Boolean firstTime = false;
 
     public void createMarker() {
-
         garagemService.consultaGaragem(new GaragemDto(),getApplicationContext(), new FutureCallback<JsonArray>() {
 
             @Override
@@ -289,7 +297,7 @@ public class ActivityMap extends AppCompatActivity implements
                         //        BitmapDescriptor markerIcon = BitmapDescriptorFactory.fromResource(R.drawable.marker);
                         //        markerOptions.icon(markerIcon);
                         Marker mMarker = GMap.addMarker(markerOptions);
-                        mMarkers.add(mMarker);
+                         mMarkers.add(mMarker);
 
                     }
                 }

@@ -41,7 +41,7 @@ public class ActivitySignup extends AppCompatActivity {
         nome = (customfonts.MyEditText)findViewById(R.id.nome);
 
         signupback.setOnClickListener(new View.OnClickListener() {
-            @Override
+                @Override
             public void onClick(View v) {
                 Intent it = new Intent(ActivitySignup.this, MainActivity.class);
                 startActivity(it);
@@ -52,6 +52,12 @@ public class ActivitySignup extends AppCompatActivity {
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!senha.getText().toString().equals(senha2.getText().toString())){
+                    Toast.makeText(getApplicationContext(), "As senhas não conferem", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+
                 UsuarioDto usuarioDto = new UsuarioDto();
                 usuarioDto.setNome(nome.getText().toString());
                 usuarioDto.setEmail(email.getText().toString());
@@ -60,10 +66,10 @@ public class ActivitySignup extends AppCompatActivity {
                 usuarioService.registraUsuario(usuarioDto, getApplicationContext(), new FutureCallback<JsonObject>() {
                     @Override
                     public void onCompleted(Exception e, JsonObject result) {
-                        Log.d("retorno", result.toString());
                         if(e != null){
                             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                         }else{
+                            Log.d("retorno", result.toString());
                             RetornoDto retornoDto = gson.fromJson(result, RetornoDto.class);
                             Toast.makeText(getApplicationContext(), retornoDto.getMessage(), Toast.LENGTH_SHORT).show();
                         }

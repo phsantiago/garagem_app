@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.garagem.nupark">
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,11 +13,11 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
+        android:name="android.support.multidex.MultiDexApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="HelloPedro"
         android:supportsRtl="true"
-        android:name="android.support.multidex.MultiDexApplication"
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
@@ -27,8 +28,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ActivitySignup"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".ActivitySignin" />
-        <activity android:name=".ActivitySignup" />
         <activity android:name=".ActivityMap" />
         <activity android:name=".testenav" />
         <!--
@@ -50,7 +53,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-
+        <activity
+            android:name=".historico"
+            android:label="@string/title_activity_historico"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
